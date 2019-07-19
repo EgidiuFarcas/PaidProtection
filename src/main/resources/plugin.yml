@@ -1,0 +1,12 @@
+name: PaidProtection
+version: 1.0.0
+main: ws.maze.paidprotection.Main
+
+commands:
+  paidprotection:
+    aliases: [pp]
+    description: Used to create region protection
+
+permissions:
+  paidprotection.reload:
+    default: op
