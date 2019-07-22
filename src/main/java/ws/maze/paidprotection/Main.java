@@ -26,6 +26,7 @@ public class Main extends JavaPlugin {
 
         //Registers the command /paidprotection args based on args[0] (args)
         handler.register("create", new CreateCommand());
+        handler.register("select", new SelectCommand());
         handler.register("cancel", new CancelCommand());
         handler.register("addcorner", new AddCornerCommand());
         handler.register("view", new ViewCommand());
