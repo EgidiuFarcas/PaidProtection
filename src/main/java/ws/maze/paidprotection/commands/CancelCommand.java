@@ -7,7 +7,7 @@ import org.bukkit.entity.Player;
 import ws.maze.paidprotection.Main;
 import ws.maze.paidprotection.objects.PaidRegion;
 
-public class ViewCommand implements CommandInterface {
+public class CancelCommand implements CommandInterface {
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args, Main plugin) {
         Player player = (Player) sender;
@@ -15,17 +15,13 @@ public class ViewCommand implements CommandInterface {
 
         if(plugin.regions.get(player.getUniqueId()) != null) {
             PaidRegion reg = plugin.regions.get(player.getUniqueId());
-            if(reg.getCornerCount() != 0){
-                reg.viewRegion(player, plugin);
-                player.sendMessage(plugin.prefix + ChatColor.GREEN + "Viewing region " + ChatColor.BLUE + reg.getName() + ChatColor.GREEN + ".");
-            }else{
-                player.sendMessage(plugin.prefix + ChatColor.RED + "You have to add at least one corner using\n" +
-                        ChatColor.GOLD + ChatColor.ITALIC + "/paidprotection addcorner" + ChatColor.RED + ".");
-            }
+            player.sendMessage(plugin.prefix + ChatColor.GREEN + "Canceled creation of region  " + ChatColor.BLUE + reg.getName() + ChatColor.GREEN + ".");
+            plugin.regions.remove(player.getUniqueId());
         }else{
             player.sendMessage(plugin.prefix + ChatColor.RED + "You must create a region first using" +
                     ChatColor.GOLD + ChatColor.ITALIC + " /paidprotection create <name>" + ChatColor.RED + ".");
         }
+
         return true;
     }
 }

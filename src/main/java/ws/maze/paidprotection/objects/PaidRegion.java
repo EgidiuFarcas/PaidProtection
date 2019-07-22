@@ -11,6 +11,8 @@ import ws.maze.paidprotection.Main;
 import java.util.ArrayList;
 
 public class PaidRegion {
+    public static int TYPE_CUBOID = 0;
+    public static int TYPE_POLYGON = 0;
 
     private ProtectedRegion wg_reg;
 
@@ -18,8 +20,17 @@ public class PaidRegion {
     private int value;
     private int area;
     private int type = 0; //0 - Cuboid | 1 - Polygon
-    private boolean editing = true;
+    private boolean is_shown = false;
     private BukkitTask view_task;
+    private String name;
+
+    public PaidRegion(String name){
+        this.name = name;
+    }
+
+    public String getName(){
+        return this.name;
+    }
 
     public void createRegion(Player player){
         //TODO Create Region
@@ -27,9 +38,11 @@ public class PaidRegion {
 
     public void hideRegion(){
         if(this.view_task != null) this.view_task.cancel();
+        this.is_shown = false;
     }
 
     public void viewRegion(Player player, Main plugin){
+        //Temp Corner View
         this.view_task = new BukkitRunnable() {
 
             public void run() {
@@ -38,11 +51,15 @@ public class PaidRegion {
                 }
             }
         }.runTaskTimer( plugin, 0, 2);
-        //TODO View Region
+        this.is_shown = true;
+        //TODO View Region Walls
+    }
+
+    public boolean isRegionShown(){
+        return this.is_shown;
     }
 
     public void addCorner(Location location){
-        if(!this.editing) return;
         this.corners.add(location);
         if(this.corners.size() > 2) this.type = 1;
     }
@@ -57,7 +74,16 @@ public class PaidRegion {
     }
 
     public int getArea(){
-        //TODO Compute Area
+        return (this.type == PaidRegion.TYPE_CUBOID) ? getCuboidArea() : getPolygonArea();
+    }
+
+    private int getCuboidArea(){
+        //TODO Compute cuboid area
+        return this.area;
+    }
+
+    private int getPolygonArea(){
+        //TODO Compute Polygon area
         return this.area;
     }
 

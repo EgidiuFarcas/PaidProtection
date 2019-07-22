@@ -13,9 +13,14 @@ public class HideCommand implements CommandInterface {
         if(args.length > 1) return false;
 
         if(plugin.regions.get(player.getUniqueId()) != null) {
-            plugin.regions.get(player.getUniqueId()).hideRegion();
+            if(!plugin.regions.get(player.getUniqueId()).isRegionShown()){
+                player.sendMessage(plugin.prefix + ChatColor.RED + "You are not viewing a region. Nothing to hide.");
+            }else{
+                plugin.regions.get(player.getUniqueId()).hideRegion();
+                player.sendMessage(plugin.prefix + ChatColor.GREEN + "Region viewing stopped.");
+            }
         }else{
-            player.sendMessage(plugin.prefix + ChatColor.RED + "You are not viewing a region. Nothing to hide.");
+            player.sendMessage(plugin.prefix + ChatColor.RED + "No region selected.");
         }
         return true;
     }

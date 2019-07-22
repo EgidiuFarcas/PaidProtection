@@ -26,6 +26,7 @@ public class Main extends JavaPlugin {
 
         //Registers the command /paidprotection args based on args[0] (args)
         handler.register("create", new CreateCommand());
+        handler.register("cancel", new CancelCommand());
         handler.register("addcorner", new AddCornerCommand());
         handler.register("view", new ViewCommand());
         handler.register("hide", new HideCommand());
@@ -39,8 +40,9 @@ public class Main extends JavaPlugin {
         getConfig().options().copyDefaults();
         saveDefaultConfig();
 
-        new ConstructCommand(this);
-//        this.registerCommands();
+//        new ConstructCommand(this);
+        this.registerCommands();
+
         if (!setupEconomy() ) {
             log.severe(String.format("[%s] - Disabled due to no Vault dependency found!", getDescription().getName()));
             getServer().getPluginManager().disablePlugin(this);

@@ -17,8 +17,8 @@ public class CreateCommand implements CommandInterface{
             return false;
         }
 
-        if(plugin.regions.get(player.getUniqueId()) == null) plugin.regions.put(player.getUniqueId(), new PaidRegion());
-        else plugin.regions.replace(player.getUniqueId(), new PaidRegion());
+        if(plugin.regions.get(player.getUniqueId()) == null) plugin.regions.put(player.getUniqueId(), new PaidRegion(args[1]));
+        else plugin.regions.replace(player.getUniqueId(), new PaidRegion(args[1]));
 
         player.sendMessage(plugin.prefix + ChatColor.GREEN + "Created region " + ChatColor.BLUE + args[1] + ChatColor.GREEN + ".");
         player.sendMessage(plugin.prefix + ChatColor.GREEN + "Add corners using" + ChatColor.GOLD + ChatColor.ITALIC + " /paidprotection addcorner");
