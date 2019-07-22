@@ -166,6 +166,7 @@ public class ConstructCommand implements CommandExecutor {
                     if(player.hasPermission("paidprotection.reload")) {
                         player.sendMessage(ChatColor.GRAY + "> " + ChatColor.GOLD + ChatColor.ITALIC + "/paidprotection reload " + ChatColor.GRAY + "-" + ChatColor.GREEN + " Reloads the plugin.");
                     }
+
                     return true;
                 }
 
