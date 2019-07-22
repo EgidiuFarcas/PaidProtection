@@ -41,7 +41,6 @@ public class Main extends JavaPlugin {
 
         new ConstructCommand(this);
 //        this.registerCommands();
-
         if (!setupEconomy() ) {
             log.severe(String.format("[%s] - Disabled due to no Vault dependency found!", getDescription().getName()));
             getServer().getPluginManager().disablePlugin(this);
